@@ -197,7 +197,7 @@ class Main extends Phaser.State {
     // Current wealth
     this.gameUI = this.game.add.group();
     this.gameUI.position.setTo(0, 0);
-    this.gameUIPoints = this.gameUI.addChild(state.game.add.text(400, 20, state.game.player.wealth + ' gold', {
+    this.gameUIPoints = this.gameUI.addChild(state.game.add.text(400, 20, stringifyNum(state.game.player.wealth) + ' gold', {
         font: '32px Arial Black',
         fill: '#999999',
         strokeThickness: 4
