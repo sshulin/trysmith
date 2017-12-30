@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Phaser</title>
+</head>
+<body>
+	<div id="app"></div>
+	<style>
+		body {
+			background-color: #8e99c6;
+			height: 100vh;
+		}
+		body:before {
+			content: '';			
+			background-image: url(./assets/images/bg-snow.png);
+			background-size: cover;
+			height: 100%;
+			left: 0;
+			opacity: 0.4;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+		canvas {
+			border: 2px solid rgba(0,0,0,0.2);
+			position: fixed;
+			left: 50%;
+			top: 42.5%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+	<script src="./node_modules/phaser/build/phaser.min.js"></script>
+	<script src="./game.js"></script>
+</body>
+</html>
