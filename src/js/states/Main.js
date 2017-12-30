@@ -76,13 +76,14 @@ class Main extends Phaser.State {
     // game config
     this.game.constants = {
 
-    	baseClickPower: 1,
+    	baseClickPower: 10,
+    	baseClickUpgradePower: 5,
 
     	// Autoclick period = baseAutoTime / (1 + baseAutoDivider * upgrades.idleSpeed)
 
-    	baseAutoTime: 10000,
+    	baseAutoTime: 2000,
     	baseAutoDivider: 0.2,
-    	baseAutoPower: 2,
+    	baseAutoPower: 5,
 
     	// isCritical = random > 1 - (baseCritChance + (critChanceMultiplier * upgrades.critChance))
     	// CriticalMultiplier = critMultiplierBase + (critMultiplierGrower * upgrades.critPower)
@@ -94,7 +95,7 @@ class Main extends Phaser.State {
 
     this.game.player = {
         strength: 1,
-        wealth: 123000000000,
+        wealth: 0,
         upgrades: {
         	click: 0,
         	critChance: 0,
@@ -125,7 +126,7 @@ class Main extends Phaser.State {
 		};
 		this.onHitCurrentWeapon = function(isCritical) {
 			var shakeShift = isCritical ? 25 : 10;
-			var affort = state.game.constants.baseClickPower * (1 + state.game.player.upgrades.click);
+			var affort = state.game.constants.baseClickPower + (state.game.constants.baseClickUpgradePower *  state.game.player.upgrades.click);
 			affort = isCritical ? affort * (state.game.constants.critMultiplierBase + state.game.constants.critMultiplierGrower * state.game.player.upgrades.critPower) : affort;
 			state.currentWeapon.progress += affort;
 			if(state.currentWeapon.progress >= state.currentWeapon.difficulty) {
