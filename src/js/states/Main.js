@@ -12,63 +12,6 @@ import stringifyNum from '../helpers/stringifyNum';
 class Main extends Phaser.State {
 
 	preload() {
-		this.game.time.advancedTiming = true;
-    this.game.load.image('anvil', 'assets/images/anvil.png');
-    this.game.load.image('bg-cave', 'assets/images/bg-cave.png');
-    this.game.load.image('bg-snow', 'assets/images/bg-snow.png');
-
-    // Weapons
-    this.game.load.image('upgrade-click', 'assets/images/buttons/click.png');
-    this.game.load.image('upgrade-crit-chance', 'assets/images/buttons/crit-chance.png');
-    this.game.load.image('upgrade-crit-power', 'assets/images/buttons/crit-power.png');
-    this.game.load.image('upgrade-speed', 'assets/images/buttons/speed.png');
-    this.game.load.image('upgrade-timer', 'assets/images/buttons/timer.png');
-
-    // Upgrade icons
-    this.game.load.image('axe', 'assets/images/axe_viking_imperor.png');
-    this.game.load.image('hammer', 'assets/images/Hammer.png');
-    this.game.load.image('battle-axe', 'assets/images/BattleAxe.png');
-    this.game.load.image('sword', 'assets/images/Sword.png');
-
-    var bmdUpgradeBtn = this.game.add.bitmapData(150, 35);
-    bmdUpgradeBtn.ctx.fillStyle = '#818ab5';
-    bmdUpgradeBtn.ctx.strokeStyle = '#000000';
-    bmdUpgradeBtn.ctx.lineWidth = 4;
-    bmdUpgradeBtn.ctx.fillRect(0, 0, 150, 35);
-    bmdUpgradeBtn.ctx.strokeRect(0, 0, 150, 35);
-    this.game.cache.addBitmapData('upgradeButton', bmdUpgradeBtn);
-
-    var bmdUpgradeIcon = this.game.add.bitmapData(35, 35);
-    bmdUpgradeIcon.ctx.fillStyle = '#9099b5';
-    bmdUpgradeIcon.ctx.strokeStyle = '#000000';
-    bmdUpgradeIcon.ctx.lineWidth = 4;
-    bmdUpgradeIcon.ctx.fillRect(0, 0, 35, 35);
-    bmdUpgradeIcon.ctx.strokeRect(0, 0, 35, 35);
-    this.game.cache.addBitmapData('upgradeIcon', bmdUpgradeIcon);
-
-    var bmdCurPanel = this.game.add.bitmapData(508, 158);
-    // bmd.ctx.fillStyle = '#818ab5';
-    bmdCurPanel.ctx.fillStyle = '#9099b5';
-    bmdCurPanel.ctx.strokeStyle = '#000000';
-    bmdCurPanel.ctx.lineWidth = 8;
-    bmdCurPanel.ctx.fillRect(0, 0, 508, 158);
-    bmdCurPanel.ctx.strokeRect(0, 0, 508, 158);
-    this.game.cache.addBitmapData('currentPanel', bmdCurPanel);
-
-    var bmdComPanel = this.game.add.bitmapData(308, 38);
-    // bmd.ctx.fillStyle = '#818ab5';
-    bmdComPanel.ctx.fillStyle = '#696c7e';
-    bmdComPanel.ctx.strokeStyle = '#000000';
-    bmdComPanel.ctx.lineWidth = 8;
-    bmdComPanel.ctx.fillRect(0, 0, 308, 38);
-    bmdComPanel.ctx.strokeRect(0, 0, 308, 38);
-    this.game.cache.addBitmapData('completionPanel', bmdComPanel);
-
-    var bmdComBar = this.game.add.bitmapData(300, 30);
-    bmdComBar.ctx.fillStyle = '#818ab5';
-    bmdComBar.ctx.strokeStyle = '#000000';
-    bmdComBar.ctx.fillRect(0, 0, 300, 30);
-    this.game.cache.addBitmapData('completionBar', bmdComBar);
 
     this.tableWeapons = tableWeapons;
     this.tableUpgrades = tableUpgrades;
@@ -162,8 +105,11 @@ class Main extends Phaser.State {
 		};
 		this.onAutoHit = function() {
 			var state = this;
+			if(!state.game.player.upgrades.idlePower > 0) {
+				return false;
+			}
 
-			state.currentWeapon.progress += state.game.constants.baseAutoPower * (1 + state.game.player.upgrades.click);
+			state.currentWeapon.progress += state.game.constants.baseAutoPower * (state.game.player.upgrades.idlePower);
 			if(state.currentWeapon.progress >= state.currentWeapon.difficulty) {
 				state.onFinishedWeapon();
 			} else {
