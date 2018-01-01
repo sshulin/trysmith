@@ -1,6 +1,5 @@
 export default [
-  {name: 'Sword',       image: 'sword-0',       difficulty: 150, price: 20},
-  {name: 'Battle Axe',  image: 'battle-axe-0',  difficulty: 100, price: 15},
-  {name: 'Hammer',      image: 'hammer-0',      difficulty: 50, price: 10},
-  {name: 'Axe',         image: 'axe-0',         difficulty: 100, price: 20}
+  {name: 'Sword',       imagePrefix: 'sword-',       difficulty: 150, price: 25},
+  {name: 'Hammer',      imagePrefix: 'hammer-',      difficulty: 50, price: 15},
+  {name: 'Axe',         imagePrefix: 'axe-',         difficulty: 100, price: 20}
 ]

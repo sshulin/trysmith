@@ -27,7 +27,7 @@ class CurrentWeaponPanel extends Phaser.Sprite {
 	renderUpgrade(upgrade) {
 		var panel = this;
   	panel.upgradeButtons[upgrade] = {};
-    panel.upgradeButtons[upgrade].button = panel.addChild(panel.game.add.button(20, 20 + tableUpgrades[upgrade].position * 40, panel.game.cache.getBitmapData('upgradeButton')));
+    panel.upgradeButtons[upgrade].button = panel.addChild(panel.game.add.button(0, tableUpgrades[upgrade].position * 40, panel.game.cache.getBitmapData('upgradeButton')));
     panel.upgradeButtons[upgrade].button.events.onInputDown.add(panel.onUpgradeClick, panel);
 
     panel.upgradeButtons[upgrade].button.data = upgrade;

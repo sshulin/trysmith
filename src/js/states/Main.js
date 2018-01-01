@@ -1,9 +1,11 @@
 import tableUpgrades from '../data/tableUpgrades';
 import tableWeapons from '../data/tableWeapons';
+import tableQualities from '../data/tableQualities';
 
 import Anvil from '../objects/Anvil';
 import Weapon from '../objects/Weapon';
 
+import QualityPanel from '../panels/QualityPanel';
 import CurrentWeaponPanel from '../panels/CurrentWeaponPanel';
 import UpgradesPanel from '../panels/UpgradesPanel';
 
@@ -39,6 +41,7 @@ class Main extends Phaser.State {
     this.game.player = {
         strength: 1,
         wealth: 0,
+        quality: 0,
         upgrades: {
         	click: 0,
         	critChance: 0,
@@ -83,7 +86,13 @@ class Main extends Phaser.State {
 		this.spawnWeapon = function() {
 			var state = this;
 
-	    var randWeapon = state.tableWeapons[Math.floor(Math.random() * state.tableWeapons.length)];
+	    var randWeapon = {};
+	    var randWeaponData = Object.assign(state.tableWeapons[Math.floor(Math.random() * state.tableWeapons.length)]);
+	    randWeapon.image = randWeaponData.imagePrefix + state.game.player.quality;
+	    randWeapon.difficulty = randWeaponData.difficulty * tableQualities[state.game.player.quality].difficulty;
+	    randWeapon.price = randWeaponData.price * tableQualities[state.game.player.quality].price;
+	    randWeapon.name = tableQualities[state.game.player.quality].name + ' ' + randWeaponData.name;
+
 	    state.currentWeapon = new Weapon(state.game, state.game.world.centerX, state.game.world.centerY - 50, randWeapon);
 	    state.currentWeapon.anchor.setTo(0.5, 0.5);
 
@@ -102,6 +111,7 @@ class Main extends Phaser.State {
 
 			state.gameUIPoints.text = stringifyNum(state.game.player.wealth) + ' gold';
 			state.upgradePanel.updateAllUpgrades();
+    	state.qualityPanel.renderQuality();
 		};
 		this.onAutoHit = function() {
 			var state = this;
@@ -125,7 +135,7 @@ class Main extends Phaser.State {
     bgSnowSprite.scale.setTo(0.6,0.6);
 
     // Upgrades
-    state.upgradePanel = new UpgradesPanel(state.game);
+    state.upgradePanel = new UpgradesPanel(state.game, 20, 65);
     state.upgradePanel.events.onBuy.add(function() {
 			state.onWealthChanged();
     })
@@ -150,6 +160,13 @@ class Main extends Phaser.State {
         strokeThickness: 4
     }));
     this.gameUIPoints.anchor.setTo(0.5, 0);
+
+    // Quality button
+    state.qualityPanel = new QualityPanel(state.game, 20, 20);
+    state.qualityPanel.anchor.setTo(0, 0);
+    state.qualityPanel.events.onBuy.add(function() {
+			state.onWealthChanged();
+    })
 
     // Autohit timer
     this.autoHitTimer = this.game.time.events.loop(state.game.constants.baseAutoTime/(1+state.game.constants.baseAutoDivider*state.game.player.upgrades.idleSpeed), this.onAutoHit, this);
