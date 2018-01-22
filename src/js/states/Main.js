@@ -40,7 +40,7 @@ class Main extends Phaser.State {
 
     this.game.player = {
         strength: 1,
-        wealth: 888800,
+        wealth: 0,
         quality: 0,
         upgrades: {
         	click: 0,
