@@ -2,7 +2,6 @@ class Boot extends Phaser.State {
 	preload() {
 
     var bmdCurPanel = this.game.add.bitmapData(508, 158);
-    // bmd.ctx.fillStyle = '#818ab5';
     bmdCurPanel.ctx.fillStyle = '#9099b5';
     bmdCurPanel.ctx.strokeStyle = '#000000';
     bmdCurPanel.ctx.lineWidth = 8;
@@ -11,7 +10,6 @@ class Boot extends Phaser.State {
     this.game.cache.addBitmapData('currentPanel', bmdCurPanel);
     
     var bmdComPanel = this.game.add.bitmapData(308, 38);
-    // bmd.ctx.fillStyle = '#818ab5';
     bmdComPanel.ctx.fillStyle = '#696c7e';
     bmdComPanel.ctx.strokeStyle = '#000000';
     bmdComPanel.ctx.lineWidth = 8;
@@ -36,5 +34,5 @@ class Boot extends Phaser.State {
 		this.game.state.start('Load');
 	}
 }
-// this.game.world.width
+
 export default Boot;

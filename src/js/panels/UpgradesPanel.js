@@ -33,14 +33,14 @@ class CurrentWeaponPanel extends Phaser.Sprite {
     panel.upgradeButtons[upgrade].button.data = upgrade;
 
   	panel.upgradeButtons[upgrade].lvlText = panel.upgradeButtons[upgrade].button.addChild(panel.game.add.text(17.5, 20, '', {
-      font: '20px Arial Black',
+      font: '14px PressStart2P',
       fill: '#dedeef',
       strokeThickness: 4
   	}));
   	panel.upgradeButtons[upgrade].lvlText.anchor.setTo(0.5,0.5);
     
   	panel.upgradeButtons[upgrade].costText = panel.upgradeButtons[upgrade].button.addChild(panel.game.add.text(75, 20, '', {
-      font: '20px Arial Black',
+      font: '14px PressStart2P',
       fill: '#c79030',
       strokeThickness: 4
   	}));

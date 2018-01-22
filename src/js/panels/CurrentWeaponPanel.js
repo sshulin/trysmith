@@ -13,15 +13,15 @@ class CurrentWeaponPanel extends Phaser.Sprite {
 		// Current weapon panel
 		game.add.existing(this);
 
-    panel.nameText = panel.addChild(game.add.text(0, 20, '', {
-        font: '32px Arial Black',
+    panel.nameText = panel.addChild(game.add.text(0, 25, '', {
+        font: '24px PressStart2P',
         fill: '#dedeef',
         strokeThickness: 4
     }));
     panel.nameText.anchor.setTo(0.5, 0);
 
     panel.priceText = panel.addChild(game.add.text(panel.width/2 - 10, 10, '', {
-        font: '18px Arial Black',
+        font: '14px PressStart2P',
         fill: '#c79030',
         strokeThickness: 4
     }));
@@ -36,8 +36,8 @@ class CurrentWeaponPanel extends Phaser.Sprite {
     panel.completionBar = panel.completionPanel.addChild(comBar);
     panel.completionBar.anchor.setTo(0, 0.5);
 
-    panel.completionText = panel.completionPanel.addChild(game.add.text(panel.completionPanel.width / 2, 3, '', {
-        font: '24px Arial Black',
+    panel.completionText = panel.completionPanel.addChild(game.add.text(panel.completionPanel.width / 2, 2, '', {
+        font: '18px PressStart2P',
         fill: '#dedeef',
         strokeThickness: 4
     }));

@@ -40,7 +40,7 @@ class Main extends Phaser.State {
 
     this.game.player = {
         strength: 1,
-        wealth: 0,
+        wealth: 888800,
         quality: 0,
         upgrades: {
         	click: 0,
@@ -145,7 +145,7 @@ class Main extends Phaser.State {
     this.currentPanel.anchor.setTo(0.5, 0);
 
     // Anvil
-    this.anvilSprite = new Anvil(state.game, 400, 300);
+    this.anvilSprite = new Anvil(state.game, state.game.world.centerX, state.game.world.centerY);
     this.anvilSprite.anchor.setTo(0.5, 0.5);
     this.anvilSprite.events.onInputDown.add(state.onHitAnvil, state);
 
@@ -154,8 +154,8 @@ class Main extends Phaser.State {
     // Current wealth
     this.gameUI = this.game.add.group();
     this.gameUI.position.setTo(0, 0);
-    this.gameUIPoints = this.gameUI.addChild(state.game.add.text(400, 20, stringifyNum(state.game.player.wealth) + ' gold', {
-        font: '32px Arial Black',
+    this.gameUIPoints = this.gameUI.addChild(state.game.add.text(state.game.world.centerX, 30, stringifyNum(state.game.player.wealth) + ' gold', {
+        font: '28px PressStart2P',
         fill: '#999999',
         strokeThickness: 4
     }));
@@ -166,6 +166,8 @@ class Main extends Phaser.State {
     state.qualityPanel.anchor.setTo(0, 0);
     state.qualityPanel.events.onBuy.add(function() {
 			state.onWealthChanged();
+	    state.currentWeapon.destroy();
+			state.spawnWeapon();
     })
 
     // Autohit timer

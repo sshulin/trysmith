@@ -21,7 +21,7 @@ class QualityPanel  extends Phaser.Button {
     panel.onInputDown.add(panel.onQualityClick, panel);
 
   	panel.lvlText = panel.addChild(panel.game.add.text(17.5, 20, '', {
-      font: '20px Arial Black',
+      font: '14px PressStart2P',
       fill: '#ffffff',
       strokeThickness: 4
   	}));
@@ -30,14 +30,14 @@ class QualityPanel  extends Phaser.Button {
   	panel.nameBlock = panel.addChild(panel.game.add.image(35, 0, qualityTextBgImg));
   	panel.nameBlock.anchor.setTo(0, 0);
     panel.nameText = panel.nameBlock.addChild(panel.game.add.text(panel.nameBlock.width / 2, 2 + panel.nameBlock.height / 2, '', {
-      font: '20px Arial Black',
+      font: '14px PressStart2P',
       fill: '#dedeef',
       strokeThickness: 4
   	}));
     panel.nameText.anchor.setTo(0.5, 0.5);
 
   	panel.costText = panel.addChild(panel.game.add.text(207.5, 20, '', {
-      font: '20px Arial Black',
+      font: '14px PressStart2P',
       fill: '#c79030',
       strokeThickness: 4
   	}));
@@ -52,7 +52,7 @@ class QualityPanel  extends Phaser.Button {
 
 		panel.lvlText.text = panel.game.player.quality;
 		panel.nameText.text = tableQualities[panel.game.player.quality].name;
-		panel.costText.text = stringifyNum(upgradeCost) + ' g';
+		panel.costText.text = stringifyNum(upgradeCost) + '';
 
 		if(upgradeCost > panel.game.player.wealth) {
 			panel.costText.fill = "#ff0000";

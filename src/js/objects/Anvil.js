@@ -30,7 +30,7 @@ class Anvil extends Phaser.Sprite {
 		shakeTimer.loop(50, function(){
       if (shakeCount == 0) {
           //if shake end set camera to default position 
-          anv.x = 400;
+          anv.x = anv.game.world.centerX;
           shakeTimer.stop();
           return;
       }

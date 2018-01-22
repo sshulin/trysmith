@@ -5,7 +5,7 @@ import Main from './states/Main';
 class Game extends Phaser.Game {
 
 	constructor() {
-		super(800, 600, Phaser.AUTO, '');
+		super(960, 640, Phaser.AUTO, '');
 		this.state.add('Boot', Boot);
 		this.state.add('Load', Load);
 		this.state.add('Main', Main);
@@ -13,5 +13,7 @@ class Game extends Phaser.Game {
 	}
 
 }
- 
-new Game();
+
+window.initGame = function() {
+	new Game();
+} 

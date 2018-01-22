@@ -9,14 +9,6 @@ gulp.task('copy-phaser', () =>
 		.pipe(gulp.dest('build/js/vendor'))
 		);
 
-// gulp.task('scripts', () => 
-// 	gulp.src('./src/js/**/*.js')
-// 		.pipe(babel({
-// 			presets: ['env']
-// 		}))
-// 		.pipe(gulp.dest('build/js'))
-// 	);
-
 gulp.task('scripts', function() {
   return rollup({input: './src/js/game.js', format: 'iife'})
     .pipe(source('game.js'))
