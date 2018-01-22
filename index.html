@@ -3,13 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Phaser</title>
-</head>
-<body>
-	<div id="app"></div>
 	<style>
+		@font-face {
+			font-family: 'PressStart2P';
+			src: url('./assets/fonts/PressStart2P.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'VT323';
+			src: url('./assets/fonts/VT323.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
 		body {
 			background-color: #8e99c6;
 			height: 100vh;
+			margin: 0;
 		}
 		body:before {
 			content: '';			
@@ -29,8 +39,28 @@
 			top: 42.5%;
 			transform: translate(-50%, -50%);
 		}
+		.fonthack {
+			height: 0;
+			opacity: 0;
+			overflow: hidden;
+		}
+		.fonthack__pressStart2P {
+			font-family: 'PressStart2P';
+		}
+		.fonthack__vt323 {
+			font-family: 'VT323';
+		}
 	</style>
-	<script src="./node_modules/phaser/build/phaser.min.js"></script>
-	<script src="./game.js"></script>
+</head>
+<body>
+	<div class="fonthack">
+		<div class="fonthack__pressStart2P">-</div>
+		<div class="fonthack__vt323">-</div>
+	</div>
+	<script src="./js/vendor/phaser.min.js"></script>
+	<script src="./js/game.js"></script>
+	<script>
+		initGame();
+	</script>
 </body>
 </html>
